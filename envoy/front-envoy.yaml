@@ -28,6 +28,23 @@ static_resources:
                 route:
                   cluster: service2
                   prefix_rewrite: "/"
+              - match: 
+                  path: "/"
+                  headers:
+                    name: "x-route-to"
+                    exact_match: "service2"
+                route:
+                  cluster: service2
+                  prefix_rewrite: "/"
+              - match:
+                  path: "/"
+                  headers:
+                      name: "x-route-to"
+                      exact_match: "service2"
+                      invert_match: true
+                route:
+                  cluster: service1
+                  prefix_rewrite: "/"
           http_filters:
           - name: envoy.router
             typed_config: {}
