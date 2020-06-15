@@ -20,11 +20,6 @@ spec:
             subset: v2
             port:
               number: 3000
-      fault:
-        delay:
-          fixedDelay: 1s
-          percentage:
-            value: 100
     - match:
       - uri:
           prefix: /
@@ -34,4 +29,8 @@ spec:
             subset: v1
             port:
               number: 3000
-
+      fault:
+        delay:
+          fixedDelay: 1s
+          percentage:
+            value: 100
