@@ -12,19 +12,14 @@ spec:
       - uri:
           prefix: /
         headers:
-          x-test-user:
-            exact: "true"
+          user-agent:
+             regex: ".*Chrome.*"
       route:
         - destination:
             host: chuck-ui
             subset: v2
             port:
               number: 3000
-      # fault:
-      #   delay:
-      #     fixedDelay: 1s
-      #     percentage:
-      #       value: 100
     - match:
       - uri:
           prefix: /
@@ -34,4 +29,8 @@ spec:
             subset: v1
             port:
               number: 3000
-
+      fault:
+        abort:
+          httpStatus: 500
+          percentage:
+            value: 50
