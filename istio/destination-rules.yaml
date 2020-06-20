@@ -1,0 +1,16 @@
+# UI service
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: chuck-ui
+spec:
+  host: chuck-ui
+  subsets:
+  - name: "v1"
+    labels:
+      serving: "true"
+      version: "v1"
+  - name: "v2"
+    labels:
+      serving: "true"
+      version: "v2"
